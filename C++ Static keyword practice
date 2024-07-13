@@ -1,0 +1,48 @@
+#include <iostream>
+
+class sample {
+	int x, y;
+	static int n;
+public:
+
+	void set_n_value(int a) {
+		n = a;
+	}
+	
+	void only_print_n_value() {
+		std::cout << n << std::endl;
+	}
+};
+
+class test_static_objects {
+
+	static int object_file;
+
+public:
+	test_static_objects() {
+		object_file++;
+	}
+	~test_static_objects() {
+		object_file--;
+		std::cout << "object destroyed : " << object_file << std::endl;
+
+	}
+	static void printInfo() {
+		std::cout << "Total object : " << object_file << std::endl;
+	}
+};
+
+int sample::n;
+int test_static_objects::object_file;
+
+int main()
+{
+ 	sample x,y,z;
+	z.set_n_value(3);
+	z.only_print_n_value();
+	y.only_print_n_value();
+	x.only_print_n_value();
+	test_static_objects a, b, c, d;
+	test_static_objects::printInfo();
+}
+
